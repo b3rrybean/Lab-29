@@ -3,10 +3,15 @@
 // Define constants
 
 // Define function to simulate attedance changes overtime
-// Parameters:
+// Parameters: map of opponent teams, number of games (time periods)
+// I think I'll make this function later - call it simulateAttendanceChanges()
 
 // Define main function:
 // Initialize a map to store hockey game information
-// The key is the opponent team (like "Ducks", "Kings", etc.)
+// Each opponent name (like "Ducks", "Kings", etc.) will be the map key
+// The value will be an array of three lists:
+    // [1] = season ticket holders
+    // [2] = casual fans
+    // [3] = new fans
 
-// not sure where everything should go quite yet... thinking ..
+// Open an external file called fan.stxt to read initial fan data
