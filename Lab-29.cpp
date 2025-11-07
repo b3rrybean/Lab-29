@@ -12,6 +12,7 @@
 const int NUM_PERIODS = 25; // 25 game nights
 
 // Define function to simulate attendance changes overtime
+void simulateAttendanceChanges(std::map<std::string, std::array<std::list<std::string>, 3>> &gameFans, int periods) {
 // simulateAttendanceChanges(map, periods)
 // Parameters: map of opponent teams, number of games (time periods)
     // Begin a time-based simulation for attendance changes
@@ -24,7 +25,8 @@ const int NUM_PERIODS = 25; // 25 game nights
 
     // After all time periods, display the final results of attendance
     // Show how many fans total came for each type
-
+    std::cout << "Simulation function placeholder.\n";
+}
 // End of function
 
 // Define main function:

@@ -1,1 +1,10 @@
 Unit Testing Plan for simulateAttendanceChanges()
+
+The simulateAttendanceChanges() function modifies the map of fan data over a series of time periods.
+To unit test this function I would create a small controlled dataset in memory to verify that the
+function correctly adds, removes, and converts fans between lists.
+
+The test will check:
+- That adding fans increases the list size
+- That removing fans decreases the list size
+- That converting a fan from new to casual moves them between the correct lists
