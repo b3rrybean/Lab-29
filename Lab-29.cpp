@@ -24,8 +24,15 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
     gameFans["Ducks"][2].push_back("Fan004");
 
             // Sometimes remove a few existing ones
-    if (!gameFans["Ducks"])
+    if (!gameFans["Ducks"][1].empty()) {
+        gameFans["Ducks"][1].pop_back();
+    }
             // Sometimes convert a new fan into a casual fan
+    if (!gameFans["Ducks"][2].empty()) {
+        string fan = gameFans["Ducks"][2].front();
+        gameFans["Ducks"][2].pop_front();
+        gameFans["Ducks"][1].push_back(fan);
+    }
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
 
     // After all time periods, display the final results of attendance
@@ -48,10 +55,18 @@ int main() {
     gameFans["Ducks"][1].push_back("Fan002");
     gameFans["Ducks"][2].push_back("Fan003");
 
-    cout << "Before " << gameFans["Ducks"][2].size() << " new fans.\n";
-    simulateAttendanceChanges(gameFans, 1);
-    cout << "After: " << gameFans["Ducks"][2].size() << " new fans.\n";
+    cout << "Before "
+         << gameFans["Ducks"][0].size() << " season, "
+         << gameFans["Ducks"][1].size() << " casual, "
+         << gameFans["Ducks"][2].size() << " new fans.\n";
 
+    simulateAttendanceChanges(gameFans, 1);
+    
+    cout << "After: "
+         << gameFans["Ducks"][0].size() << " season, "
+         << gameFans["Ducks"][1].size() << " casual, "
+         << gameFans["Ducks"][2].size() << " new fans.\n";
+         
     // Open an external file called fans.txt to read initial fan data
         // If the file doesn't open, print an error message and exit the program
     ifstream file("fans.txt");
