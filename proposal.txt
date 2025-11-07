@@ -1,5 +1,5 @@
 Project Overview:
-My project creates a simulation for attendance patters at San Jose Sharks hockey games.
+My project creates a simulation for attendance patterns at San Jose Sharks hockey games.
 This software will illustrate the potential impact that different factors like recent promotions, 
 bad weather, and winning streaks will have.
 
