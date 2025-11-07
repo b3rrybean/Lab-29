@@ -15,3 +15,5 @@
     // [3] = new fans
 
 // Open an external file called fan.stxt to read initial fan data
+    // If the file doesn't open, print an error message and exit the program
+// Read data from file and populate map
