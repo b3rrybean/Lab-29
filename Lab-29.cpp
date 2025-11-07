@@ -11,7 +11,7 @@
 // Define constants
 const int NUM_PERIODS = 25; // 25 game nights
 
-// Define function to simulate attedance changes overtime
+// Define function to simulate attendance changes overtime
 // simulateAttendanceChanges(map, periods)
 // Parameters: map of opponent teams, number of games (time periods)
     // Begin a time-based simulation for attendance changes
@@ -28,6 +28,7 @@ const int NUM_PERIODS = 25; // 25 game nights
 // End of function
 
 // Define main function:
+int main() {
     // Initialize a map to store hockey game information
     std::map<std::string, std::array<std::list<std::string>, 3>> gameFans;
         // Each opponent name (like "Ducks", "Kings", etc.) will be the map key
@@ -35,8 +36,16 @@ const int NUM_PERIODS = 25; // 25 game nights
             // [0] = season ticket holders
             // [1] = casual fans
             // [2] = new fans
-            gameFans["Ducks"][0].push_back("Fan001");   // season
-            gameFans["Ducks"][0].push_back("Fan002");   // casual
+
+    // Dummy fans for wireframe testing
+    gameFans["Ducks"][0].push_back("Fan001");   // season
+    gameFans["Ducks"][1].push_back("Fan002");   // casual
+    gameFans["Ducks"][2].push_back("Fan003");   // new
+
+    // Print wireframe check
+    std::cout << "Season fans: " << gameFans["Ducks"][0].size() << "\n";
+    std::cout << "Casual fans: " << gameFans["Ducks"][1].size() << "\n";
+    std::cout << "New fans: " << gameFans["Ducks"][2].size() << "\n";
 
     // Open an external file called fans.txt to read initial fan data
         // If the file doesn't open, print an error message and exit the program
@@ -56,6 +65,9 @@ const int NUM_PERIODS = 25; // 25 game nights
     // After the simulation, display the final attendance results
         // For each opponent, show the total fans in each category
         // e.g. "Sharks vs Ducks - Season: 15, Casual: 20, New: 10"
+
+    return 0;
+}
 
 // End of main function
 // End of program
