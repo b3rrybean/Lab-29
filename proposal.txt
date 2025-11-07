@@ -1,0 +1,18 @@
+Outline:
+Attendance patterns at San Jose Sharks hockey games!
+Lists
+1. Season ticket holders
+2. Casual fans
+3. First-time fans
+Elements
+1. Recent promotion (increase)
+2. Winning streak (increase)
+3. Bad weather (decrease)
+4. First-time fans switch to casual fans (change)
+Time period
+25 game nights
+
+Project Overview:
+My project creates a simulation for attendance patters at San Jose Sharks hockey games.
+This software will illustrate the potential impact that different factors like recent promotions, 
+bad weather, and winning streaks will have.
