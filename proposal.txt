@@ -4,7 +4,7 @@ This software will illustrate the potential impact that different factors like r
 bad weather, and winning streaks will have.
 
 Implementation:
-I plan to use an std::map where each key represents an opponent team or game location, and the value is a 3-element
+I plan to use an std::map where each key represents an opponent team and the value is a 3-element
 std::array of std::lists where list 1 is season ticket holders, list 2 is casual fans, and list 3 is first-time fans.
 
 These lists will store ticket IDs of the fans.
