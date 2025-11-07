@@ -1,0 +1,27 @@
+Unit Testing Plan for simulateAttendanceChanges()
+
+The simulateAttendanceChanges() function modifies the map of fan data over a series of time periods.
+To unit test this function I would create a small controlled dataset in memory to verify that the
+function correctly adds, removes, and converts fans between lists.
+
+The test will check:
+- That adding fans increases the list size
+- That removing fans decreases the list size
+- That converting a fan from new to casual moves them between the correct lists
+
+// Add dummy fans for testing
+gameFans["Ducks"][0].push_back("Fan001");
+gameFans["Ducks"][1].push_back("Fan002");
+gameFans["Ducks"][2].push_back("Fan003");
+
+cout << "Before: "
+     << gameFans["Ducks"][0].size() << " season, "
+     << gameFans["Ducks"][1].size() << " casual, "
+     << gameFans["Ducks"][2].size() << " new fans.\n";
+
+simulateAttendanceChanges(gameFans, 1);
+
+cout << "After: "
+     << gameFans["Ducks"][0].size() << " season, "
+     << gameFans["Ducks"][1].size() << " casual, "
+     << gameFans["Ducks"][2].size() << " new fans.\n";
