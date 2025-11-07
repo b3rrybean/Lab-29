@@ -1,17 +1,3 @@
-Outline:
-Attendance patterns at San Jose Sharks hockey games!
-Lists
-1. Season ticket holders
-2. Casual fans
-3. First-time fans
-Elements
-1. Recent promotion (increase)
-2. Winning streak (increase)
-3. Bad weather (decrease)
-4. First-time fans switch to casual fans (change)
-Time period
-25 game nights
-
 Project Overview:
 My project creates a simulation for attendance patters at San Jose Sharks hockey games.
 This software will illustrate the potential impact that different factors like recent promotions, 
@@ -19,9 +5,16 @@ bad weather, and winning streaks will have.
 
 Implementation:
 I plan to use an std::map where each key represents an opponent team or game location, and the value is a 3-element
-std::array of std::lists where list 1 season ticket holders, list 2 is casual fans, and list 3 is first-time fans.
+std::array of std::lists where list 1 is season ticket holders, list 2 is casual fans, and list 3 is first-time fans.
 
 These lists will store ticket IDs of the fans.
 
+The map data will populate using an external file containing 100 lines of data, where each line represents a fan's category
+and which game they are attending.
+
 Simulated events:
-The simulation will focus on three events: 
+The simulation will focus on three events: recent promotion for the game which would result in an increase, bad weather
+which would result in a decrease, or first-time fans switching to casual fans which would track a shift in fan type. At any given
+time period these may occur.
+
+The simulation will run for 25 time periods, each representing a new game night.
