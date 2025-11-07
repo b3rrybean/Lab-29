@@ -13,14 +13,18 @@ using namespace std;
 const int NUM_PERIODS = 25; // 25 game nights
 
 // Define function to simulate attendance changes overtime
-void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, int periods) {
 // simulateAttendanceChanges(map, periods)
 // Parameters: map of opponent teams, number of games (time periods)
+void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, int periods) {
+
     // Begin a time-based simulation for attendance changes
     // For 25 minute intervals
         // Iterate through random attendance events:
             // Sometimes add a few new fans
+    gameFans["Ducks"][2].push_back("Fan004");
+
             // Sometimes remove a few existing ones
+    if (!gameFans["Ducks"])
             // Sometimes convert a new fan into a casual fan
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
 
@@ -34,19 +38,28 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
 int main() {
     // Initialize a map to store hockey game information
     map<string, array<list<string>, 3>> gameFans;
-    ifstream file("fans.txt");
-    if (!file.is_open()) {
-        cout << "Error: could not open fans.txt\n";
-        return 1;
-    }
         // Each opponent name (like "Ducks", "Kings", etc.) will be the map key
         // The value will be an array of three lists:
             // [0] = season ticket holders
             // [1] = casual fans
             // [2] = new fans
 
+    gameFans["Ducks"][0].push_back("Fan001");
+    gameFans["Ducks"][1].push_back("Fan002");
+    gameFans["Ducks"][2].push_back("Fan003");
+
+    cout << "Before " << gameFans["Ducks"][2].size() << " new fans.\n";
+    simulateAttendanceChanges(gameFans, 1);
+    cout << "After: " << gameFans["Ducks"][2].size() << " new fans.\n";
+
     // Open an external file called fans.txt to read initial fan data
         // If the file doesn't open, print an error message and exit the program
+    ifstream file("fans.txt");
+    if (!file.is_open()) {
+        cout << "Error: could not open fans.txt\n";
+        return 1;
+    }
+
     // Read data from file and populate map by extracting opponent name, fan type, and fan ID
         // Insert the fan ID into the correct list (season, casual, or new)
             // Read each line from the file using getline
@@ -66,7 +79,7 @@ int main() {
     // Call simulateAttendanceChanges with the map and 25 time periods
         // This will run the time-based simulation
     simulateAttendanceChanges(gameFans, NUM_PERIODS);
-    
+
     // After the simulation, display the final attendance results
         // For each opponent, show the total fans in each category
         // e.g. "Sharks vs Ducks - Season: 15, Casual: 20, New: 10"
