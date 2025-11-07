@@ -16,3 +16,12 @@ Project Overview:
 My project creates a simulation for attendance patters at San Jose Sharks hockey games.
 This software will illustrate the potential impact that different factors like recent promotions, 
 bad weather, and winning streaks will have.
+
+Implementation:
+I plan to use an std::map where each key represents an opponent team or game location, and the value is a 3-element
+std::array of std::lists where list 1 season ticket holders, list 2 is casual fans, and list 3 is first-time fans.
+
+These lists will store ticket IDs of the fans.
+
+Simulated events:
+The simulation will focus on three events: 
