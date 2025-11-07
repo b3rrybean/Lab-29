@@ -1,6 +1,15 @@
 // Include necessary headers
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <array>
+#include <list>
+#include <string>
+#include <cstdlib>
+#include <ctime>
 
 // Define constants
+const int NUM_PERIODS = 25; // 25 game nights
 
 // Define function to simulate attedance changes overtime
 // simulateAttendanceChanges(map, periods)
@@ -10,7 +19,7 @@
         // Iterate through random attendance events:
             // Sometimes add a few new fans
             // Sometimes remove a few existing ones
-            // Sometimes convert a first-time fan into a casual fan
+            // Sometimes convert a new fan into a casual fan
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
 
     // After all time periods, display the final results of attendance
@@ -20,16 +29,19 @@
 
 // Define main function:
     // Initialize a map to store hockey game information
+    std::map<std::string, std::array<std::list<std::string>, 3>> gameFans;
         // Each opponent name (like "Ducks", "Kings", etc.) will be the map key
         // The value will be an array of three lists:
-            // [1] = season ticket holders
-            // [2] = casual fans
-            // [3] = new fans
+            // [0] = season ticket holders
+            // [1] = casual fans
+            // [2] = new fans
+            gameFans["Ducks"][0].push_back("Fan001");   // season
+            gameFans["Ducks"][0].push_back("Fan002");   // casual
 
     // Open an external file called fans.txt to read initial fan data
         // If the file doesn't open, print an error message and exit the program
     // Read data from file and populate map by extracting opponent name, fan type, and fan ID
-        // Insert the fan ID into the correct list (season, casual, or first-time)
+        // Insert the fan ID into the correct list (season, casual, or new)
             // Read each line from the file using getline
             // Split the line at commas into opponent, fan type, fan ID
     
@@ -39,7 +51,11 @@
         // For each opponent, print how many fans are in each list
     
     // Call simulateAttendanceChanges with the map and 25 time periods
+        // This will run the time-based simulation
+
+    // After the simulation, display the final attendance results
+        // For each opponent, show the total fans in each category
+        // e.g. "Sharks vs Ducks - Season: 15, Casual: 20, New: 10"
 
 // End of main function
-
 // End of program

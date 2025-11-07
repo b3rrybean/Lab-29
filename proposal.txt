@@ -14,7 +14,7 @@ and which game they are attending.
 
 Simulated events:
 The simulation will focus on three events: recent promotion for the game which would result in an increase, bad weather
-which would result in a decrease, or first-time fans switching to casual fans which would track a shift in fan type. At any given
+which would result in a decrease, or new fans switching to casual fans which would track a shift in fan type. At any given
 time period these may occur.
 
 The simulation will run for 25 time periods, each representing a new game night.
