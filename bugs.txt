@@ -1,0 +1,2 @@
+Bug #1: The file reading skipped the last line because of missing newline
+Fix: Added if (line.empty()) continue; to avoid reading empty trailing lines.
