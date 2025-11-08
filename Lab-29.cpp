@@ -7,6 +7,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 using namespace std;
 
 // Define constants
@@ -16,28 +17,51 @@ const int NUM_PERIODS = 25; // 25 game nights
 // simulateAttendanceChanges(map, periods)
 // Parameters: map of opponent teams, number of games (time periods)
 void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, int periods) {
-
-    // Begin a time-based simulation for attendance changes
+    srand(time(0));
+// Begin a time-based simulation for attendance changes
     // For 25 minute intervals
         // Iterate through random attendance events:
-            // Sometimes add a few new fans
-    gameFans["Ducks"][2].push_back("Fan004");
+    for(int t = 0; t < periods; t++) {
+        for (auto& [opponent, lists] : gameFans) {
+            int action = rand() % 4;
+            
+            // Sometimes add a few new fans (promotion)
+            if (action == 0) {
+                string newFan = "Fan" + to_string(rand() % 900 + 100);
+                lists[2].push_back(newFan);
+                cout << "[Promotion] New fan joined Sharks vs " << opponent << ": " << newFan << endl;
+            }
+            // Sometimes remove a few existing fans (bad weather)
+            else if (action == 1 && !lists[1].empty()) {
+                cout << "[Weather] Casual fan removed from Sharks vs" << opponent << ": " << lists[1].back() << endl;
+                lists[1].pop_back();
+            }
 
-            // Sometimes remove a few existing ones
-    if (!gameFans["Ducks"][1].empty()) {
-        gameFans["Ducks"][1].pop_back();
-    }
-            // Sometimes convert a new fan into a casual fan
-    if (!gameFans["Ducks"][2].empty()) {
-        string fan = gameFans["Ducks"][2].front();
-        gameFans["Ducks"][2].pop_front();
-        gameFans["Ducks"][1].push_back(fan);
+            // Sometimes convert a new fan into a casual fan (loyalty shift)
+             else if (action == 2 && !lists[2].empty()) {
+                string fan = lists[2].front();
+                lists[2].pop_front();
+                lists[1].push_back(fan);
+                cout << "[Loyalty] Converted " << fan << " from new to casual for Sharks" << endl;
+            }
+            // Winning streak: extra casual fans join
+            else if (action == 3) {
+                string fan = "Fan" + to_string(rand() % 900 + 100);
+                lists[0].push_back(fan);
+                cout << "[Winning Streak] New fan joined Sharks" << endl;
+            }
+        }
     }
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
-
     // After all time periods, display the final results of attendance
     // Show how many fans total came for each type
-    cout << "Simulation function placeholder.\n";
+    cout << "Simulation complete. Final totals:\n";
+    for (auto& [opponent, lists] : gameFans) {
+        cout << " Sharks vs "<< opponent
+             << " - Season: " << lists[0].size()
+             << ", Casual: " << lists[1].size()
+             << ", New: " << lists[2].size() << endl;
+    }
 }
 // End of function
 
@@ -50,22 +74,6 @@ int main() {
             // [0] = season ticket holders
             // [1] = casual fans
             // [2] = new fans
-
-    gameFans["Ducks"][0].push_back("Fan001");
-    gameFans["Ducks"][1].push_back("Fan002");
-    gameFans["Ducks"][2].push_back("Fan003");
-
-    cout << "Before "
-         << gameFans["Ducks"][0].size() << " season, "
-         << gameFans["Ducks"][1].size() << " casual, "
-         << gameFans["Ducks"][2].size() << " new fans.\n";
-
-    simulateAttendanceChanges(gameFans, 1);
-    
-    cout << "After: "
-         << gameFans["Ducks"][0].size() << " season, "
-         << gameFans["Ducks"][1].size() << " casual, "
-         << gameFans["Ducks"][2].size() << " new fans.\n";
          
     // Open an external file called fans.txt to read initial fan data
         // If the file doesn't open, print an error message and exit the program
@@ -79,7 +87,25 @@ int main() {
         // Insert the fan ID into the correct list (season, casual, or new)
             // Read each line from the file using getline
             // Split the line at commas into opponent, fan type, fan ID
-    
+    string line;
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        string opponent, type, fanID;
+        stringstream ss(line);
+
+        std::getline(ss, opponent, ',');
+        std::getline(ss, type, ',');
+        std::getline(ss, fanID, ',');
+
+        if(type == "season")
+            gameFans[opponent][0].push_back(fanID);
+        else if (type == "casual")
+            gameFans[opponent][1].push_back(fanID);
+        else if (type == "new")
+            gameFans[opponent][2].push_back(fanID);
+    }
+
     // Close the file
     file.close();
 

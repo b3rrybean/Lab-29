@@ -1,0 +1,32 @@
+Bug #1: The file reading skipped the last line because of missing newline
+Fix: Added if (line.empty()) continue; to avoid reading empty trailing lines.
+
+Bug #2: Forgot to seed the random number generator
+Fix: Added srand(time(0)); inside the function
+
+Bug #3: File-parsing logic is outside the while loop
+Fix: Moving the stringstream logic inside the loop
+
+Bug #4: "new" fans were added to season list (index 0) instead of new list (index 2)
+Fix: Changed gameFans[opponent][0] to gameFans[opponent][2]
+
+Bug #5: Not very good reflection on why the changes are happening
+Fix: Add better cout statements specifying the reason for change
+
+Bug #6: Forgot to add simulation event for impact from winning streak
+Fix: Add another else if for winning streak event in simulateAttendanceChanges
+
+Bug #7: Random events in the simulation only used rand() % 3 which means "winning streak"
+event never occurs
+Fix: Changed the code to rand() % 4
+
+Forgot to add these in order earlier:
+
+Bug #8: Random new fan IDs could potentially duplicate existing IDs
+Fix: Added ("Fan" + to_string(rand() % 900 + 100)) to reduce collisions
+
+Bug #9: Simulation results were only placeholders and did not display totals
+Fix: Added final output after all time periods showing total fan per type for each opponent
+
+Bug #10: Did not originally check to see if fans.txt had empty lines
+Fix: Added (!lists.empty()) continue; in the reading loop to skip empty lines
