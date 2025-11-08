@@ -50,7 +50,12 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
 
     // After all time periods, display the final results of attendance
     // Show how many fans total came for each type
-    cout << "Simulation function placeholder.\n";
+    cout << "Simulation complete. Final totals:\n";
+    for (auto& [team, lists] : gameFans) {
+        cout << " " << team << " — Season: " << lists[0].size()
+             << ", Casual: " << lists[1].size()
+             << ", New: " << lists[2].size() << endl;
+    }
 }
 // End of function
 
@@ -79,19 +84,21 @@ int main() {
     string line;
     while (std::getline(file, line)) {
         if (line.empty()) continue;
-    }
-    string opponent, type, fanID;
-    stringstream ss(line);
-    std::getline(ss, opponent, ',');
-    std::getline(ss, type, ',');
-    std::getline(ss, fanID, ',');
 
-    if(type == "season")
-        gameFans[opponent][0].push_back(fanID);
-    else if (type == "casual")
-        gameFans[opponent][1].push_back(fanID);
-    else if (type == "new")
-        gameFans[opponent][0].push_back(fanID);
+        string opponent, type, fanID;
+        stringstream ss(line);
+
+        std::getline(ss, opponent, ',');
+        std::getline(ss, type, ',');
+        std::getline(ss, fanID, ',');
+
+        if(type == "season")
+            gameFans[opponent][0].push_back(fanID);
+        else if (type == "casual")
+            gameFans[opponent][1].push_back(fanID);
+        else if (type == "new")
+            gameFans[opponent][2].push_back(fanID);
+    }
 
     // Close the file
     file.close();

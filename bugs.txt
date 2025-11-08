@@ -3,3 +3,9 @@ Fix: Added if (line.empty()) continue; to avoid reading empty trailing lines.
 
 Bug #2: Forgot to seed the random number generator
 Fix: Added srand(time(0)); inside the function
+
+Bug #3: File-parsing logic is outside the while loop
+Fix: Moving the stringstream logic inside the loop
+
+Bug #4: "new" fans were added to season list (index 0) instead of new list (index 2)
+Fix: Changed gameFans[opponent][0] to gameFans[opponent][2]
