@@ -23,7 +23,7 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
         // Iterate through random attendance events:
     for(int t = 0; t < periods; t++) {
         for (auto& [opponent, lists] : gameFans) {
-            int action = rand() % 3;
+            int action = rand() % 4;
             
             // Sometimes add a few new fans (promotion)
             if (action == 0) {
@@ -58,7 +58,7 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
     cout << "Simulation complete. Final totals:\n";
     for (auto& [opponent, lists] : gameFans) {
         cout << " Sharks vs "<< opponent
-             << " -Season: " << lists[0].size()
+             << " - Season: " << lists[0].size()
              << ", Casual: " << lists[1].size()
              << ", New: " << lists[2].size() << endl;
     }

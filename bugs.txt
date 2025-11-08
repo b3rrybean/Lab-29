@@ -16,4 +16,17 @@ Fix: Add better cout statements specifying the reason for change
 Bug #6: Forgot to add simulation event for impact from winning streak
 Fix: Add another else if for winning streak event in simulateAttendanceChanges
 
-Bug #7: 
+Bug #7: Random events in the simulation only used rand() % 3 which means "winning streak"
+event never occurs
+Fix: Changed the code to rand() % 4
+
+Forgot to add these in order earlier:
+
+Bug #8: Random new fan IDs could potentially duplicate existing IDs
+Fix: Added ("Fan" + to_string(rand() % 900 + 100)) to reduce collisions
+
+Bug #9: Simulation results were only placeholders and did not display totals
+Fix: Added final output after all time periods showing total fan per type for each opponent
+
+Bug #10: Did not originally check to see if fans.txt had empty lines
+Fix: Added (!lists.empty()) continue; in the reading loop to skip empty lines
