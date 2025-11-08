@@ -17,22 +17,26 @@ const int NUM_PERIODS = 25; // 25 game nights
 // simulateAttendanceChanges(map, periods)
 // Parameters: map of opponent teams, number of games (time periods)
 void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, int periods) {
-
-    // Begin a time-based simulation for attendance changes
+// Begin a time-based simulation for attendance changes
     // For 25 minute intervals
         // Iterate through random attendance events:
+    for(int t = 0; t < periods; t++) {
+        for (auto& [team, lists] : gameFans) {
+            int action = rand() % 3;
+            
             // Sometimes add a few new fans
-    gameFans["Ducks"][2].push_back("Fan004");
+            if (action == 0) {
+                string newFan = "Fan" + to_string(rand() % 900 + 100);
+                lists[2].push_back(newFan);
+                cout << "New fan joined " << team << ": " << newFan << endl;
+            }
+            // Sometimes remove a few existing fans
 
-            // Sometimes remove a few existing ones
-    if (!gameFans["Ducks"][1].empty()) {
-        gameFans["Ducks"][1].pop_back();
-    }
+
             // Sometimes convert a new fan into a casual fan
-    if (!gameFans["Ducks"][2].empty()) {
-        string fan = gameFans["Ducks"][2].front();
-        gameFans["Ducks"][2].pop_front();
-        gameFans["Ducks"][1].push_back(fan);
+
+
+        }
     }
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
 
@@ -89,7 +93,7 @@ int main() {
         gameFans[opponent][1].push_back(fanID);
     else if (type == "new")
         gameFans[opponent][0].push_back(fanID);
-        
+
     // Close the file
     file.close();
 
