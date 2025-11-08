@@ -7,6 +7,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 using namespace std;
 
 // Define constants
@@ -51,10 +52,6 @@ int main() {
             // [1] = casual fans
             // [2] = new fans
 
-    gameFans["Ducks"][0].push_back("Fan001");
-    gameFans["Ducks"][1].push_back("Fan002");
-    gameFans["Ducks"][2].push_back("Fan003");
-
     cout << "Before "
          << gameFans["Ducks"][0].size() << " season, "
          << gameFans["Ducks"][1].size() << " casual, "
@@ -79,7 +76,20 @@ int main() {
         // Insert the fan ID into the correct list (season, casual, or new)
             // Read each line from the file using getline
             // Split the line at commas into opponent, fan type, fan ID
-    
+    string line;
+    string opponent, type, fanID;
+    stringstream ss(line);
+    getline(ss, opponent, ',');
+    getline(ss, type, ',');
+    getline(ss, fanID, ',');
+
+    if(type == "season")
+        gameFans[opponent][0].push_back(fanID);
+    else if (type == "casual")
+        gameFans[opponent][1].push_back(fanID);
+    else if (type == "new")
+        gameFans[opponent][0].push_back(fanID);
+        
     // Close the file
     file.close();
 
