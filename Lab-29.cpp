@@ -22,37 +22,43 @@ void simulateAttendanceChanges(map<string, array<list<string>, 3>>& gameFans, in
     // For 25 minute intervals
         // Iterate through random attendance events:
     for(int t = 0; t < periods; t++) {
-        for (auto& [team, lists] : gameFans) {
+        for (auto& [opponent, lists] : gameFans) {
             int action = rand() % 3;
             
-            // Sometimes add a few new fans
+            // Sometimes add a few new fans (promotion)
             if (action == 0) {
                 string newFan = "Fan" + to_string(rand() % 900 + 100);
                 lists[2].push_back(newFan);
-                cout << "New fan joined " << team << ": " << newFan << endl;
+                cout << "[Promotion] New fan joined Sharks vs " << opponent << ": " << newFan << endl;
             }
-            // Sometimes remove a few existing fans
+            // Sometimes remove a few existing fans (bad weather)
             else if (action == 1 && !lists[1].empty()) {
-                cout << "Casual fan removed from " << team << ": " << lists[1].back() << endl;
+                cout << "[Weather] Casual fan removed from Sharks vs" << opponent << ": " << lists[1].back() << endl;
                 lists[1].pop_back();
             }
 
-            // Sometimes convert a new fan into a casual fan
+            // Sometimes convert a new fan into a casual fan (loyalty shift)
              else if (action == 2 && !lists[2].empty()) {
                 string fan = lists[2].front();
                 lists[2].pop_front();
                 lists[1].push_back(fan);
-                cout << "Converted " << fan << " from new to casual for " << team << endl;
+                cout << "[Loyalty] Converted " << fan << " from new to casual for Sharks" << endl;
+            }
+            // Winning streak: extra casual fans join
+            else if (action == 3) {
+                string fan = "Fan" + to_string(rand() % 900 + 100);
+                lists[0].push_back(fan);
+                cout << "[Winning Streak] New fan joined Sharks" << endl;
             }
         }
     }
     // Print what happened this time period, e.g. "3 new fans joined the Sharks vs Kings game."
-
     // After all time periods, display the final results of attendance
     // Show how many fans total came for each type
     cout << "Simulation complete. Final totals:\n";
-    for (auto& [team, lists] : gameFans) {
-        cout << " " << team << " — Season: " << lists[0].size()
+    for (auto& [opponent, lists] : gameFans) {
+        cout << " Sharks vs "<< opponent
+             << " -Season: " << lists[0].size()
              << ", Casual: " << lists[1].size()
              << ", New: " << lists[2].size() << endl;
     }

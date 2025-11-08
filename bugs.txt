@@ -9,3 +9,11 @@ Fix: Moving the stringstream logic inside the loop
 
 Bug #4: "new" fans were added to season list (index 0) instead of new list (index 2)
 Fix: Changed gameFans[opponent][0] to gameFans[opponent][2]
+
+Bug #5: Not very good reflection on why the changes are happening
+Fix: Add better cout statements specifying the reason for change
+
+Bug #6: Forgot to add simulation event for impact from winning streak
+Fix: Add another else if for winning streak event in simulateAttendanceChanges
+
+Bug #7: 
